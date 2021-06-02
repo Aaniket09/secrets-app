@@ -33,6 +33,7 @@ mongoose.connect("mongodb+srv://admin-aniket:aniket0920@cluster0.p9cnf.mongodb.n
 mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema({
+  username: String,
   email: String,
   password: String,
   googleId: String,
@@ -64,7 +65,7 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     console.log(profile);
-    User.findOrCreate({ googleId: profile.id, email: profile.emails[0].value }, function (err, user) {
+    User.findOrCreate({ googleId: profile.id, email: profile.emails[0].value, username: profile.displayName }, function (err, user) {
       return cb(err, user);
     });
   }
@@ -78,7 +79,7 @@ passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     console.log(profile);
-    User.findOrCreate({ facebookId: profile.id, email: profile.emails[0].value }, function (err, user) {
+    User.findOrCreate({ facebookId: profile.id, email: profile.emails[0].value, username:profile.displayName }, function (err, user) {
       return cb(err, user);
     });
   }
