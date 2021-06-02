@@ -132,7 +132,9 @@ app.get("/secrets", function(req, res) {
         }
       }
     });
-  } 
+  } else {
+    res.redirect("/secrets");
+  }
 });
 
 app.get("/submit", function(req, res) {
