@@ -122,7 +122,7 @@ app.get("/register", function(req, res) {
 app.get("/secrets", function(req, res) {
   res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stal   e=0, post-check=0, pre-check=0');
 
-  if(req.isAuthenticated()) {
+
     User.find({"secrets": {$ne: null}}, function(err, foundUsers) {
       if(err) {
         console.log(err);
@@ -132,9 +132,6 @@ app.get("/secrets", function(req, res) {
         }
       }
     });
-  } else {
-    res.redirect("/secrets");
-  }
 });
 
 app.get("/submit", function(req, res) {
