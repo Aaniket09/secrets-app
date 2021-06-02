@@ -133,7 +133,7 @@ app.get("/secrets", function(req, res) {
       }
     });
   } else {
-    res.redirect("/login");
+    res.redirect("/secrets");
   }
 });
 
@@ -208,6 +208,7 @@ app.post("/login", passport.authenticate("local"), function(req, res) {
     req.login(user, function(err) {
         if(err) {
             console.log(err);
+            res.redirect("/login");
         } else {
             res.redirect("/secrets");
         }
