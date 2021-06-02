@@ -199,7 +199,7 @@ app.post("/register", function(req, res) {
   });
 });
 
-app.post("/login", passport.authenticate("local"), function(req, res) {
+app.post("/login", function(req, res) {
     const user = new User({
         username: req.body.username,
         password: req.body.password
@@ -208,9 +208,10 @@ app.post("/login", passport.authenticate("local"), function(req, res) {
     req.login(user, function(err) {
         if(err) {
             console.log(err);
-            res.redirect("/login");
         } else {
+          passport.authenticate("local")(req, res, function() {
             res.redirect("/secrets");
+          });
         }
     });
 });
