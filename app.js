@@ -73,7 +73,7 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_CLIENT_ID,
     clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/secrets",
+    callbackURL: "https://arcane-sierra-75722.herokuapp.com/auth/facebook/secrets",
     profileFields: ['id', 'displayName', 'email']
   },
   function(accessToken, refreshToken, profile, cb) {
