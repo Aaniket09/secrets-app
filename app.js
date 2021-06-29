@@ -16,16 +16,13 @@ app.use(express.static("public"));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.use(session({
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: false
-}));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb+srv://admin-aniket:aniket0920@cluster0.p9cnf.mongodb.net/test?retryWrites=true/userDB",
+//const url = process.env.MONGO_URL;
+
+mongoose.connect("mongodb://localhost:27017/userDB",
 {
   useNewUrlParser: true,
   useUnifiedTopology: true
